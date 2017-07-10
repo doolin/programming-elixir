@@ -15,7 +15,17 @@ defmodule Exercise12Test do
       end
     end
 
-    @tag :skip
-    test 'another match error'
+    test 'another match error' do
+      list = [1, 1, 2]
+      assert_raise MatchError, fn ->
+        [a, _b, a] = list
+      end
+    end
+
+    test 'matching works' do
+      list = [1, 2, 1]
+      [a, b, a] = list
+      assert [a, b, a] == [1, 2, 1]
+    end
   end
 end
