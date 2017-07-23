@@ -24,4 +24,18 @@ defmodule Chapter6Test do
       assert Sum.of(3) == 6
     end
   end
+
+  describe "gcd" do
+    test "gcd of 1 and 2 is 1" do
+      assert Gcd.of(1, 2) == 1
+    end
+
+    test "gcd of 4 and 6 is 2" do
+      assert Gcd.of(4, 6) == 2
+    end
+
+    test "gcd of 15 and 25 is 5" do
+      assert Gcd.of(25, 15) == 5
+    end
+  end
 end
