@@ -9,6 +9,12 @@ defmodule Chapter6Test do
     test "3 factorial is 6" do
       assert Factorial.of(3) == 6
     end
+
+    test "negative number raises" do
+      assert_raise FunctionClauseError, fn ->
+        Factorial.of(-3) == 6
+      end
+    end
   end
 
   describe "sum" do
