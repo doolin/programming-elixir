@@ -1,6 +1,17 @@
 defmodule Chapter6Test do
   use ExUnit.Case
 
+  describe "binary search" do
+    test "example from book with actual as argument" do
+      assert Chop.guess(273, (1..1000)) == 273
+    end
+
+    @tag :skip
+    test "example from book" do
+      assert Chop.guess(1, (1..1000)) == 273
+    end
+  end
+
   describe "factorial" do
     test "0 factorial is 1" do
       assert Factorial.of(0) == 1
