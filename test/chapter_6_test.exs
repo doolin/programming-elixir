@@ -6,9 +6,9 @@ defmodule Chapter6Test do
       assert Chop.guess(273, (1..1000)) == 273
     end
 
-    @tag :skip
+    # @tag :skip
     test "example from book" do
-      assert Chop.guess(1, (1..1000)) == 273
+      assert Chop.guess(39, (1..1000)) == 273
     end
   end
 

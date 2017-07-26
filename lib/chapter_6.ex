@@ -9,18 +9,25 @@ defmodule Chop do
 
   def guess(actual, range) do
 
-    midpoint = div(range.last, 2)
+    # IO.puts "\n ---> current guess: #{actual}"
+    # IO.puts "---> range.first: #{range.first}"
+    # IO.puts "---> range.last: #{range.last}"
 
-    if @actual < midpoint do
-      first = midpoint - 1
-      actual = div(range.last-first, 2)
-      IO.puts "less than: #{actual}"
-      guess(actual, first..range.last)
+
+    if actual < @actual do
+      # IO.puts "less than block"
+      first = actual + 1
+      # IO.puts "\n ---> first: #{first}"
+      nextguess = div(range.last+first, 2)
+      # IO.puts "nextguess: #{nextguess}"
+      guess(nextguess, first..range.last)
+
     else
-      last = midpoint + 1
-      actual = div(last-range.first, 2)
-      IO.puts "greater than: #{actual}"
-      guess(actual, (range.first..last))
+      # IO.puts "greater than block"
+      last = actual - 1
+      nextguess = div(range.first+last, 2)
+      # IO.puts "nextguess: #{nextguess}"
+      guess(nextguess, (range.first..last))
     end
   end
 
