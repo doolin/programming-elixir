@@ -55,4 +55,28 @@ defmodule Chapter6Test do
       assert Gcd.of(25, 15) == 5
     end
   end
+
+  describe "exercise 7" do
+    test "float to binary in erlang" do
+      assert :io_lib_format.fwrite_g(23.5) == '23.5'
+    end
+
+    test "get $HOME" do
+      assert System.get_env("HOME") == "/Users/doolin"
+      assert "HOME" |> System.get_env == "/Users/doolin"
+    end
+
+    test "get file extension with regex" do
+      assert Regex.named_captures(~r/[a-z]+\.(?<extension>[a-z]+)/, "file.exs") == %{"extension" => "exs"}
+      assert Path.extname("file.exs") == ".exs"
+    end
+
+    test "get current working directory" do
+      assert System.cwd == "/Users/doolin/src/programming-elixir"
+    end
+
+    test "system command" do
+      assert System.cmd("ls", []) == {"README.md\n_build\nbin\nconfig\ndeps\nlib\nmix.exs\nmix.lock\ntest\n", 0}
+    end
+  end
 end
