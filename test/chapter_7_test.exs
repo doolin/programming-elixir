@@ -12,6 +12,21 @@ defmodule MyList do
   def mapsum(list, func) do
     list |> map(func) |> sum()
   end
+
+  # Yes yes, the minimum here of -1_000 is arbitrary
+  # and reflects all sorts of assumptions.
+  def listmax(list), do: _listmax(list, -1_000)
+
+  defp _listmax([], maxval), do: maxval
+
+  defp _listmax([head | tail], maxval) when maxval > head do
+    _listmax(tail, maxval)
+  end
+
+  defp _listmax([head | tail], maxval) do
+    IO.puts "HEHRE"
+    _listmax(tail, head)
+  end
 end
 
 defmodule Chapter7Test do
@@ -60,6 +75,20 @@ defmodule Chapter7Test do
 
     test "mapsum a three element list" do
       assert MyList.mapsum([1, 2, 3], &(&1*&1)) == 14
+    end
+  end
+
+  describe "max" do
+    test "find max of empty list" do
+      assert MyList.listmax([]) == -1_000
+    end
+
+    test "find max of single element list" do
+      assert MyList.listmax([1]) == 1
+    end
+
+    test "find max of multi element list" do
+      assert MyList.listmax([1, 13, 4, 8]) == 13
     end
   end
 end
