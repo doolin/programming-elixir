@@ -23,9 +23,21 @@ defmodule MyList do
     _listmax(tail, maxval)
   end
 
-  defp _listmax([head | tail], maxval) do
-    IO.puts "HEHRE"
+  defp _listmax([head | tail], _maxval) do
     _listmax(tail, head)
+  end
+
+  def caesar_char(char, cipher) do
+    cipher_sum = char - ?a + cipher
+    result = rem(cipher_sum, 26) + ?a
+    <<result::utf8>>
+  end
+
+  def caesar(chars, cipher) do
+    result = Enum.map chars, fn c ->
+      caesar_char(c, cipher)
+    end
+    Enum.join(result, "")
   end
 end
 
@@ -89,6 +101,25 @@ defmodule Chapter7Test do
 
     test "find max of multi element list" do
       assert MyList.listmax([1, 13, 4, 8]) == 13
+    end
+  end
+
+  describe "caesar_char" do
+    test "single character list encoding" do
+      assert MyList.caesar_char(?a, 1) == "b"
+      assert MyList.caesar_char(?a, 25) == "z"
+      assert MyList.caesar_char(?z, 1) == "a"
+      assert MyList.caesar_char(?a, 26) == "a"
+    end
+  end
+
+  describe "caesar" do
+    test "abyz -> bcza shift 1" do
+      assert MyList.caesar('abyz', 1) == "bcza"
+    end
+
+    test "abyz -> abyz shift 26" do
+      assert MyList.caesar('abyz', 26) == "abyz"
     end
   end
 end
