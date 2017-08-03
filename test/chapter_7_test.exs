@@ -39,10 +39,40 @@ defmodule MyList do
     end
     Enum.join(result, "")
   end
+
+  def span(from, to) when from == to do
+    [from]
+  end
+
+  def span(from, to) do
+    span(from, to, [to])
+  end
+
+  def span(from, to, [head | tail]) when head == from do
+    [head | tail]
+  end
+
+  def span(from, to, list) do
+    span(from, to - 1, [ to - 1 |  list ])
+  end
 end
 
 defmodule Chapter7Test do
   use ExUnit.Case
+
+  describe "span" do
+    test "from 1 to 1" do
+      assert MyList.span(1, 1) == [1]
+    end
+
+    test "from 1 to 2" do
+      assert MyList.span(1, 2) == [1, 2]
+    end
+
+    test "from 1 to 4" do
+      assert MyList.span(1, 4) == [1, 2, 3, 4]
+    end
+  end
 
   describe "sum" do
     test "empty list []" do
