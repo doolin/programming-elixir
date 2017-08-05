@@ -53,4 +53,19 @@ defmodule Chapter8Test do
       assert map()[:name] == "Dave"
     end
   end
+
+  describe "pattern matching maps" do
+    test "simple pattern match" do
+      person = %{ name: "Dave", height: 1.88 }
+      %{name: a_name, height: _ } = person
+      assert a_name == "Dave"
+    end
+
+    test "find a MatchError when key is not present" do
+      assert_raise MatchError, fn ->
+        person = %{ name: "Dave", height: 1.88 }
+        %{ name: _, weight: _ } = person
+      end
+    end
+  end
 end
