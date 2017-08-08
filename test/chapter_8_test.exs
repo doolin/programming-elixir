@@ -67,5 +67,25 @@ defmodule Chapter8Test do
         %{ name: _, weight: _ } = person
       end
     end
+
+    test "pattern match into array of maps" do
+      people = [
+        %{ name: "Grumpy", height: 1.24 },
+        %{ name: "Dave", height: 1.88 },
+        %{ name: "Dopey", height: 1.32},
+        %{ name: "Shaquille", height: 2.16 },
+        %{ name: "Sneezy", height: 1.28 }
+      ]
+
+      # ah er...
+      not_dwarves = for person = %{ height: height } <- people, height > 1.5 do
+        person
+      end
+
+      assert not_dwarves == [
+        %{ name: "Dave", height: 1.88 },
+        %{ name: "Shaquille", height: 2.16 },
+      ]
+    end
   end
 end
