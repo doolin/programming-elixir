@@ -21,6 +21,22 @@ defmodule Canvas do
   end
 end
 
+defmodule HotelRoom do
+  def book(%{name: name, height: height})
+  when height > 1.9 do
+    "Need extra long bed for #{name}"
+  end
+
+  def book(%{name: name, height: height})
+  when height < 1.3 do
+    "Need low shower controls for #{name}"
+  end
+
+  def book(person) do
+    "Need regular bed for #{person.name}"
+  end
+end
+
 defmodule Chapter8Test do
   use ExUnit.Case
 
@@ -85,6 +101,25 @@ defmodule Chapter8Test do
       assert not_dwarves == [
         %{ name: "Dave", height: 1.88 },
         %{ name: "Shaquille", height: 2.16 },
+      ]
+    end
+
+    test "use patterns on function calls" do
+      people = [
+        %{ name: "Grumpy", height: 1.24 },
+        %{ name: "Dave", height: 1.88 },
+        %{ name: "Dopey", height: 1.32},
+        %{ name: "Shaquille", height: 2.16 },
+        %{ name: "Sneezy", height: 1.28 }
+      ]
+
+      bookings = people |> Enum.map(&HotelRoom.book/1)
+      assert bookings == [
+        "Need low shower controls for Grumpy",
+        "Need regular bed for Dave",
+        "Need regular bed for Dopey",
+        "Need extra long bed for Shaquille",
+        "Need low shower controls for Sneezy"
       ]
     end
   end
