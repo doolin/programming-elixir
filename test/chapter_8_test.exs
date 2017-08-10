@@ -123,4 +123,15 @@ defmodule Chapter8Test do
       ]
     end
   end
+
+  describe "pattern match variable keys" do
+    test "extract keys with pin operator" do
+      data = %{ name: "Dave", state: "TX", likes: "Elixir" }
+      values = for key <- [:name, :likes] do
+        %{ ^key => value } = data
+        value
+      end
+      assert values == ["Dave", "Elixir"]
+    end
+  end
 end
