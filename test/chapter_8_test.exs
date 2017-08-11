@@ -134,4 +134,12 @@ defmodule Chapter8Test do
       assert values == ["Dave", "Elixir"]
     end
   end
+
+  describe "updating a map" do
+    test "update map value" do
+      m = %{ a: 2, b: 2, c: 3 }
+      m1 = %{ m | b: "two" }
+      assert m1 == %{ a: 1, b: "two", c: 3 }
+    end
+  end
 end
