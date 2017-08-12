@@ -137,9 +137,27 @@ defmodule Chapter8Test do
 
   describe "updating a map" do
     test "update map value" do
-      m = %{ a: 2, b: 2, c: 3 }
+      m = %{ a: 1, b: 2, c: 3 }
       m1 = %{ m | b: "two" }
       assert m1 == %{ a: 1, b: "two", c: 3 }
+    end
+  end
+
+  defmodule Subscriber do
+    defstruct name: "", paid: false, over_18: true
+  end
+
+  describe "structs as typed maps" do
+    test "subscriber struct definition" do
+      assert %Subscriber{} == %Subscriber{name: "", paid: false, over_18: true}
+    end
+
+    test "override default name in struct definition" do
+      assert %Subscriber{ name: "Dave"} == %Subscriber{name: "Dave", paid: false, over_18: true}
+    end
+
+    test "override default name and paid in definition" do
+      assert %Subscriber{ name: "Mary", paid: true} == %Subscriber{name: "Mary", paid: true, over_18: true}
     end
   end
 end
