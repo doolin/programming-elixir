@@ -159,5 +159,11 @@ defmodule Chapter8Test do
     test "override default name and paid in definition" do
       assert %Subscriber{ name: "Mary", paid: true} == %Subscriber{name: "Mary", paid: true, over_18: true}
     end
+
+    test "dereference struct members" do
+      s3 = %Subscriber{name: "Mary", paid: true}
+      assert s3.name == "Mary"
+      assert s3.paid == true
+    end
   end
 end
