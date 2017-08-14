@@ -165,5 +165,11 @@ defmodule Chapter8Test do
       assert s3.name == "Mary"
       assert s3.paid == true
     end
+
+    test "struct updating" do
+      s3 = %Subscriber{name: "Mary", paid: true}
+      s4 = %Subscriber{s3 | name: "Marian"}
+      assert s4 == %Subscriber{name: "Marian", over_18: true, paid: true}
+    end
   end
 end
