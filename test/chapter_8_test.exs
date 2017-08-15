@@ -172,4 +172,10 @@ defmodule Chapter8Test do
       assert s4 == %Subscriber{name: "Marian", over_18: true, paid: true}
     end
   end
+
+  describe "struct specific behavior" do
+    @tag :skip
+    test "print some badges" do
+    end
+  end
 end
