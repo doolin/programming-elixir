@@ -10,6 +10,6 @@ defmodule Attendee do
   end
 
   def print_vip_badge(%Attendee{}) do
-    "missing name for badge"
+    raise "missing name for badge"
   end
 end

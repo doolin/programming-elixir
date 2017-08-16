@@ -174,8 +174,34 @@ defmodule Chapter8Test do
   end
 
   describe "struct specific behavior" do
-    @tag :skip
-    test "print some badges" do
+    test "check default instance" do
+      a1 = %Attendee{name: "Dave", over_18: true}
+      assert a1 == %Attendee{name: "Dave", over_18: true, paid: false}
+    end
+
+    test "update paid" do
+      a1 = %Attendee{name: "Dave", over_18: true}
+      a2 = %Attendee{a1 | paid: true}
+      assert a2 == %Attendee{name: "Dave", over_18: true, paid: true}
+    end
+
+    test "check for after party attendence" do
+      a1 = %Attendee{name: "Dave", over_18: true}
+      a2 = %Attendee{a1 | paid: true}
+      assert Attendee.may_attend_after_party(a2) == true
+    end
+
+    test "print vip badge" do
+      a1 = %Attendee{name: "Dave", over_18: true}
+      a2 = %Attendee{a1 | paid: true}
+      assert Attendee.print_vip_badge(a2) == "Very cheap badge for Dave"
+    end
+
+    test "empty name raises RuntimeError" do
+      a3 = %Attendee{}
+      assert_raise RuntimeError, fn ->
+        Attendee.print_vip_badge(a3)
+      end
     end
   end
 end
