@@ -204,4 +204,21 @@ defmodule Chapter8Test do
       end
     end
   end
+
+  describe "p. 85: nexted dictionary structures" do
+    defmodule Customer do
+      defstruct name: "", company: ""
+    end
+
+    defmodule BugReport do
+      defstruct owner: %Customer{}, details: "", severity: 1
+    end
+
+    test "demonstrate nested initialization" do
+      report = %BugReport{owner: %Customer{name: "Dave", company: "Pragmatic"},
+        details: "broken"}
+      assert report.owner.company == "Pragmatic"
+    end
+
+  end
 end
