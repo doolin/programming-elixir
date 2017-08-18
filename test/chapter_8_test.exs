@@ -220,5 +220,12 @@ defmodule Chapter8Test do
       assert report.owner.company == "Pragmatic"
     end
 
+    test "fix wrong company owner" do
+      report = %BugReport{owner: %Customer{name: "Dave", company: "Pragmatic"},
+        details: "broken"}
+      report = %BugReport{report | owner: %Customer{report.owner | company: "PragProg"}}
+      assert report.owner.company == "PragProg"
+    end
+
   end
 end
