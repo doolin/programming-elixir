@@ -227,5 +227,13 @@ defmodule Chapter8Test do
       assert report.owner.company == "PragProg"
     end
 
+    test "p. 86 fix wrong company owner using put_in" do
+      report = %BugReport{owner: %Customer{name: "Dave", company: "Pragmatic"},
+        details: "broken"}
+      updated = put_in(report.owner.company, "PragProg")
+      assert updated == %BugReport{severity: 1, details: "broken",
+       owner: %Chapter8Test.Customer{company: "PragProg", name: "Dave"}}
+    end
+
   end
 end
