@@ -235,5 +235,19 @@ defmodule Chapter8Test do
        owner: %Chapter8Test.Customer{company: "PragProg", name: "Dave"}}
     end
 
+    test "p. 87 update_in to apply a function to a value in a struct" do
+      report = %BugReport{owner: %Customer{name: "Dave", company: "Pragmatic"},
+        details: "broken"}
+      updated = update_in(report.owner.name, &("Mr. " <> &1))
+      assert updated == %BugReport{
+        details: "broken",
+        owner: %Customer{
+          company: "Pragmatic",
+          name: "Mr. Dave"
+        },
+        severity: 1
+      }
+    end
+
   end
 end
