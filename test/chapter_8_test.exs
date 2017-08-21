@@ -249,5 +249,16 @@ defmodule Chapter8Test do
       }
     end
 
+    test "p. 87 struct gets as atoms for updating" do
+      report = %BugReport{owner: %Customer{name: "Dave", company: "Pragmatic"},
+       severity: 1}
+      assert_raise UndefinedFunctionError, fn ->
+        put_in(report[:owner][:company], "PragProg")
+      end
+      assert_raise UndefinedFunctionError, fn ->
+        update_in(report[:owner][:name], &("Mr. " <> &1))
+      end
+    end
+
   end
 end
