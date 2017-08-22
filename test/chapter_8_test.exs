@@ -260,5 +260,26 @@ defmodule Chapter8Test do
       end
     end
 
+    test "more nested maps" do
+      nested = %{
+        buttercup: %{
+          actor: %{
+            first: "Robin",
+            last: "Wright"
+          },
+          role: "princess",
+        },
+        westley: %{
+          actor: %{
+            first: "Cary",
+            last: "Elwes"
+          },
+          role: "farm boy"
+        }
+      }
+
+      assert get_in(nested, [:buttercup]) == %{actor: %{first: "Robin", last: "Wright"}, role: "princess"}
+    end
+
   end
 end
