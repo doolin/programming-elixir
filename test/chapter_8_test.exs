@@ -272,13 +272,19 @@ defmodule Chapter8Test do
         westley: %{
           actor: %{
             first: "Cary",
-            last: "Elwes"
+            last: "Ewles"
           },
           role: "farm boy"
         }
       }
 
       assert get_in(nested, [:buttercup]) == %{actor: %{first: "Robin", last: "Wright"}, role: "princess"}
+      assert get_in(nested, [:buttercup, :actor]) == %{first: "Robin", last: "Wright"}
+      assert get_in(nested, [:buttercup, :actor, :first]) == "Robin"
+      assert put_in(nested, [:westley, :actor, :last], "Elwes") == %{
+       buttercup: %{actor: %{first: "Robin", last: "Wright"}, role: "princess"},
+       westley: %{actor: %{first: "Cary", last: "Elwes"}, role: "farm boy"}
+     }
     end
 
   end
