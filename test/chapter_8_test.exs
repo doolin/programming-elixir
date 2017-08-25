@@ -305,5 +305,34 @@ defmodule Chapter8Test do
       assert get_in(authors, [languages_with_an_r, :name]) == ["Jose", nil, "Larry"]
     end
 
+    def cast do
+      [
+        %{
+          character: "Buttercup",
+          actor: %{
+            first: "Robin",
+            last: "Wright"
+          },
+          role: "princess"
+        },
+        %{
+          character: "Westley",
+          actor: %{
+            first: "Cary",
+            last: "Elwes"
+          },
+          role: "farm boy"
+        }
+      ]
+    end
+
+    test "access for characters" do
+      assert get_in(cast(), [Access.all(), :character]) == ["Buttercup", "Westley"]
+    end
+
+    test "access all for roles" do
+      assert get_in(cast(), [Access.all(), :role]) == ["princess", "farm boy"]
+    end
+
   end
 end
