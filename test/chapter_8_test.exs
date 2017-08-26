@@ -334,5 +334,12 @@ defmodule Chapter8Test do
       assert get_in(cast(), [Access.all(), :role]) == ["princess", "farm boy"]
     end
 
+    test "apply function with access" do
+      result = get_and_update_in(cast(), [Access.all(), :actor, :last], fn (val) ->
+        {String.upcase(val), String.upcase(val)}
+      end)
+    assert elem(result, 0) == ["WRIGHT", "ELWES"]
+    end
+
   end
 end
