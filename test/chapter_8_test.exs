@@ -341,5 +341,25 @@ defmodule Chapter8Test do
     assert elem(result, 0) == ["WRIGHT", "ELWES"]
     end
 
+    def cast2 do
+      [
+        %{
+          character: "Buttercup",
+          actor: {"Robin", "Wright" },
+          role: "princess"
+        },
+        %{
+          character: "Westley",
+          actor: {"Cary", "Elwes" },
+          role: "farm boy"
+        }
+      ]
+    end
+
+    test "use elem on tuples" do
+      last_names = get_in(cast2(), [Access.all(), :actor, Access.elem(1)])
+      assert last_names = ["Wright", "Elwes"]
+    end
+
   end
 end
