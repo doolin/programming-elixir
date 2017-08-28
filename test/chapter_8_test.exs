@@ -334,6 +334,11 @@ defmodule Chapter8Test do
       assert get_in(cast(), [Access.all(), :role]) == ["princess", "farm boy"]
     end
 
+    test "choose an element of the tuple" do
+      elwes = get_in(cast2(), [Access.at(1), :role])
+      assert elwes == "farm boy"
+    end
+
     test "apply function with access" do
       result = get_and_update_in(cast(), [Access.all(), :actor, :last], fn (val) ->
         {String.upcase(val), String.upcase(val)}
@@ -359,6 +364,12 @@ defmodule Chapter8Test do
     test "use elem on tuples" do
       last_names = get_in(cast2(), [Access.all(), :actor, Access.elem(1)])
       assert last_names = ["Wright", "Elwes"]
+    end
+
+    test "update on tuples" do
+      updated = get_and_update_in(cast2(), [Access.all(), :actor, Access.elem(1)],
+       fn (val) -> {String.reverse(val), String.reverse(val)} end)
+      assert elem(updated, 0) == ["thgirW", "sewlE"]
     end
 
   end
