@@ -372,5 +372,18 @@ defmodule Chapter8Test do
       assert elem(updated, 0) == ["thgirW", "sewlE"]
     end
 
+    def cast3 do
+      cast = %{
+        buttercup: %{
+          actor: {"Robin", "Wright"},
+          role: "princess"
+        },
+        westley: %{
+          actor: {"Cary", "Elwes"},
+          role: "farm boy"
+        }
+      }
+    end
+
   end
 end
