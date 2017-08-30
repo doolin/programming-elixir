@@ -385,5 +385,16 @@ defmodule Chapter8Test do
       }
     end
 
+    test "grab westley" do
+      result = get_in(cast3(), [Access.key(:westley), :actor, Access.elem(1)])
+      assert result == "Elwes"
+    end
+
+    test "promote buttercup to queen" do
+      result = get_and_update_in(cast3(), [Access.key(:buttercup), :role],
+      fn (val) -> {val, "Queen"} end)
+      assert elem(result, 1) |> get_in([Access.key(:buttercup), :role]) == "Queen"
+    end
+
   end
 end
