@@ -400,5 +400,10 @@ defmodule Chapter8Test do
       result = Access.pop(%{name: "Elixir", creator: "Valim"}, :name)
       assert result == {"Elixir", %{creator: "Valim"}}
     end
+
+    test "pop a list" do
+      result = Access.pop([name: "Elixir", creator: "Valim"], :name)
+      assert result == {"Elixir", [creator: "Valim"]}
+    end
   end
 end
