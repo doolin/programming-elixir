@@ -396,5 +396,9 @@ defmodule Chapter8Test do
       assert elem(result, 1) |> get_in([Access.key(:buttercup), :role]) == "Queen"
     end
 
+    test "p. 90 test pop to get given key" do
+      result = Access.pop(%{name: "Elixir", creator: "Valim"}, :name)
+      assert result == {"Elixir", %{creator: "Valim"}}
+    end
   end
 end
