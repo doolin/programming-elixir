@@ -406,4 +406,14 @@ defmodule Chapter8Test do
       assert result == {"Elixir", [creator: "Valim"]}
     end
   end
+
+  describe "sets" do
+    def set1 do
+      1..5 |> Enum.into(MapSet.new)
+    end
+
+    test "mapset" do
+      assert MapSet.size(set1()) == 5
+    end
+  end
 end
