@@ -412,8 +412,37 @@ defmodule Chapter8Test do
       1..5 |> Enum.into(MapSet.new)
     end
 
+    def set2 do
+      3..8 |> Enum.into(MapSet.new)
+    end
+
     test "mapset" do
       assert MapSet.size(set1()) == 5
+    end
+
+    test "mapset 2" do
+      assert MapSet.size(set2()) == 6
+    end
+
+    test "3 is member of set 1" do
+      assert MapSet.member?(set1(), 3) == true
+    end
+
+    test "union of sets 1 and 2" do
+      assert MapSet.union(set1(), set2()) |> MapSet.size == 8
+      assert MapSet.union(set1(), set2()) == 1..8 |> Enum.into(MapSet.new)
+    end
+
+    test "difference of sets 1 and 2" do
+      assert MapSet.difference(set1(), set2()) == 1..2 |> Enum.into(MapSet.new)
+    end
+
+    test "difference of sets 2 and 1 (order matters)" do
+      assert MapSet.difference(set2(), set1()) == 6..8 |> Enum.into(MapSet.new)
+    end
+
+    test "intersection of sets 1 and 2" do
+      assert MapSet.intersection(set1(), set2()) == 3..5 |> Enum.into(MapSet.new)
     end
   end
 end
