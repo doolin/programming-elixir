@@ -8,4 +8,21 @@ defmodule Countdown do
   def say(text) do
     spawn fn -> :os.cmd('say #{text}') end
   end
+
+  def timer do
+    Stream.resource(
+      fn -> # number of seconds to start of next minute
+        {_h, _m, s} = :erlang.time
+        60 - s - 1
+      end,
+      fn # wait for the next second, then return its countdown
+        0 ->
+          {:halt, 0}
+        count ->
+          sleep(1)
+          { [inspect(count), count - 1 }
+      end,
+      fn _ -> nil end # nothing to allocate
+    )
+  end
 end
