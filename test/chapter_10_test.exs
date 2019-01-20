@@ -22,4 +22,9 @@ defmodule Chapter10Test do
     assert x = [1, 4, 9, 16, 25]
     assert foo = [1, 4, 9, 16, 25]
   end
+
+  test 'nested generators' do
+    xy = for x <- [1, 2], y <- [5, 6], do: {x, y}
+    assert xy == [{1, 5}, {1, 6}, {2, 5}, {2, 6}]
+  end
 end
