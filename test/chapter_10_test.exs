@@ -34,4 +34,10 @@ defmodule Chapter10Test do
     swapped = for { city, weather } <- reports, do: { weather, city }
     assert swapped == [hot: :dallas, cold: :minneapolis, muggy: :dc, smoggy: :la]
   end
+
+  test 'list pairs multiple of 10s' do
+    first8 = [1, 2, 3, 4, 5, 6, 7, 8]
+    pairs = for x <- first8, y <- first8, x >= y, rem(x*y, 10) == 0, do: { x, y }
+    assert pairs == [{5, 2}, {5, 4}, {6, 5}, {8, 5}]
+  end
 end
