@@ -35,6 +35,12 @@ defmodule Chapter10Test do
     assert swapped == [hot: :dallas, cold: :minneapolis, muggy: :dc, smoggy: :la]
   end
 
+  test 're-using variables in generators' do
+    min_maxes = [{1, 4}, {2, 3}, {10, 15}]
+    result = for {min, max} <- min_maxes, n <- min..max, do: n
+    assert result == [1, 2, 3, 4, 2, 3, 10, 11, 12, 13, 14, 15]
+  end
+
   test 'list pairs multiple of 10s' do
     first8 = [1, 2, 3, 4, 5, 6, 7, 8]
     pairs = for x <- first8, y <- first8, x >= y, rem(x*y, 10) == 0, do: { x, y }
