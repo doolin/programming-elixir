@@ -46,4 +46,18 @@ defmodule Chapter10Test do
     pairs = for x <- first8, y <- first8, x >= y, rem(x*y, 10) == 0, do: { x, y }
     assert pairs == [{5, 2}, {5, 4}, {6, 5}, {8, 5}]
   end
+
+  test 'do comprehension on bits' do
+    result = for << ch <- "hello" >>, do: ch
+    assert result == 'hello'
+  end
+
+  test 'do another comprehension on bits' do
+    result = for << ch <- "hello" >>, do: <<ch>>
+    assert result == ["h", "e", "l", "l", "o"]
+  end
+
+  test 'whoa...' do
+    assert [104, 101, 108, 108, 111] == 'hello'
+  end
 end
