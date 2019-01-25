@@ -60,4 +60,13 @@ defmodule Chapter10Test do
   test 'whoa...' do
     assert [104, 101, 108, 108, 111] == 'hello'
   end
+
+  # describe "scope and comprehensions" do
+    test 'outer scope unaffected' do
+      name = "Dave"
+      result = for name <- [ "cat", "dog" ], do: String.upcase(name)
+      assert result == [ "CAT", "DOG" ]
+      assert name == "Dave"
+    end
+    # end
 end
