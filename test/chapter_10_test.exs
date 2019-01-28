@@ -61,12 +61,19 @@ defmodule Chapter10Test do
     assert [104, 101, 108, 108, 111] == 'hello'
   end
 
-  # describe "scope and comprehensions" do
+  describe "scope and comprehensions" do
     test 'outer scope unaffected' do
       name = "Dave"
       result = for name <- [ "cat", "dog" ], do: String.upcase(name)
       assert result == [ "CAT", "DOG" ]
       assert name == "Dave"
     end
-    # end
+  end
+
+  describe "value returned from comprehension" do
+    test "populate map" do
+      result = for x <- ~w{ cat dog }, into: %{}, do: { x, String.upcase(x) }
+      assert result == %{ "cat" => "CAT", "dog" => "DOG" }
+    end
+  end
 end
