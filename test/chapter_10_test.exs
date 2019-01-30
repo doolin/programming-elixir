@@ -80,5 +80,10 @@ defmodule Chapter10Test do
       result = for x <- ~w{ cat dog }, into: Map.new, do: { x, String.upcase(x) }
       assert result == %{ "cat" => "CAT", "dog" => "DOG" }
     end
+
+    test "populate existing map with Map.new" do
+      result = for x <- ~w{ cat dog }, into: %{"ant" => "ANT"}, do: { x, String.upcase(x) }
+      assert result == %{ "cat" => "CAT", "dog" => "DOG", "ant" => "ANT" }
+    end
   end
 end
