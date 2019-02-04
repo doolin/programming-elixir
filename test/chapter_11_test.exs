@@ -12,4 +12,10 @@ defmodule Chapter11Test do
     expected = '1\n23'
     assert actual == expected
   end
+
+  test "character list as a string" do
+    actual = ~S[1\n2#{1+2}]
+    expected = "1\\n2\#{1+2}"
+    assert actual == expected
+  end
 end
