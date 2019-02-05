@@ -18,4 +18,10 @@ defmodule Chapter11Test do
     expected = "1\\n2\#{1+2}"
     assert actual == expected
   end
+
+  test "date sigil" do
+    actual = ~D<1999-12-31>
+    expected = ~D[1999-12-31]
+    assert actual == expected
+  end
 end
