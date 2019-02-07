@@ -4,9 +4,11 @@ defmodule Parse do
 
   ## Examples
       iex> Parse.number('123')
-      :ok
+      123
   """
   def number([ ?- | tail]), do: _number_digits(tail, 0) * -1
+  def number([ ?+ | tail]), do: _number_digits(tail, 0)
+  def number(str),          do: _number_digits(str,  0)
 
   defp _number_digits([], value), do: value
 
