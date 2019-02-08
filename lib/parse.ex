@@ -5,6 +5,18 @@ defmodule Parse do
   ## Examples
       iex> Parse.number('123')
       123
+
+      iex> Parse.number('-123')
+      -123
+
+      iex> Parse.number('+123')
+      123
+
+      iex> Parse.number('+9')
+      9
+
+      iex> Parse.number('a')
+      ** (RuntimeError) Invalid digit 'a'
   """
   def number([ ?- | tail]), do: _number_digits(tail, 0) * -1
   def number([ ?+ | tail]), do: _number_digits(tail, 0)
