@@ -24,4 +24,12 @@ defmodule Chapter11Test do
     expected = ~D[1999-12-31]
     assert actual == expected
   end
+
+  describe "bitwise operations" do
+    test "bit and byte size" do
+      b = << 1, 2, 3 >>
+      assert bit_size(b) == 24
+      assert byte_size(b) == 3
+    end
+  end
 end
