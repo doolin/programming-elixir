@@ -31,5 +31,12 @@ defmodule Chapter11Test do
       assert bit_size(b) == 24
       assert byte_size(b) == 3
     end
+
+    test "bitwise modifiers" do
+      b = << 1::size(2), 1::size(3) >>
+      assert b == << 9::size(5) >>
+      assert byte_size(b) == 1
+      assert bit_size(b) == 5
+    end
   end
 end
