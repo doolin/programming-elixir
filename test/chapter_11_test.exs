@@ -38,5 +38,10 @@ defmodule Chapter11Test do
       assert byte_size(b) == 1
       assert bit_size(b) == 5
     end
+
+    test "string shenanigans" do
+      str = "∂x/∂y"
+      assert String.length(str) == 5
+    end
   end
 end
