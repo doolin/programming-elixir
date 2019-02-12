@@ -42,6 +42,7 @@ defmodule Chapter11Test do
     test "string shenanigans" do
       str = "∂x/∂y"
       assert String.length(str) == 5
+      assert byte_size(str) == 9
     end
   end
 end
