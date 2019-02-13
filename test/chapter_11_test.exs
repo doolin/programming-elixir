@@ -43,6 +43,7 @@ defmodule Chapter11Test do
       str = "∂x/∂y"
       assert String.length(str) == 5
       assert byte_size(str) == 9
+      assert String.at(str, 0) == "∂"
     end
   end
 end
