@@ -44,6 +44,8 @@ defmodule Chapter11Test do
       assert String.length(str) == 5
       assert byte_size(str) == 9
       assert String.at(str, 0) == "∂"
+      assert String.codepoints(str) == ["∂", "x", "/", "∂", "y"]
+      assert String.split(str, "/") == ["∂x", "∂y"]
     end
   end
 end
