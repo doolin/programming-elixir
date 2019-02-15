@@ -48,4 +48,12 @@ defmodule Chapter11Test do
       assert String.split(str, "/") == ["∂x", "∂y"]
     end
   end
+
+  describe "string functions" do
+    test "some graphemes" do
+      str = "noe\u0308l"
+      assert String.codepoints(str) == ["n", "o", "e", "̈", "l"]
+                                        # assert String.graphemes(str) == ["n", "o", "ë", "l"]
+    end
+  end
 end
