@@ -53,7 +53,12 @@ defmodule Chapter11Test do
     test "some graphemes" do
       str = "noe\u0308l"
       assert String.codepoints(str) == ["n", "o", "e", "̈", "l"]
-                                        # assert String.graphemes(str) == ["n", "o", "ë", "l"]
+                                        # " assert String.graphemes(str) == ["n", "o", "ë", "l"]
+    end
+
+    test "pad the lead" do
+      str = "cat"
+      assert String.pad_leading(str, 5, ">") == ">>cat"
     end
   end
 end
