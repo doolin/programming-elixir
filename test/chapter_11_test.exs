@@ -60,5 +60,10 @@ defmodule Chapter11Test do
       str = "cat"
       assert String.pad_leading(str, 5, ">") == ">>cat"
     end
+
+    test "pad the end" do
+      str = "cat"
+      assert String.pad_trailing(str, 6, "<") == "cat<<<"
+    end
   end
 end
