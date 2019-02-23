@@ -4,10 +4,17 @@ defmodule Fizzbuzz do
   defp _downto(0, result), do: result
 
   defp _downto(current, result) do
-    next_answer = 
+    next_answer =
       cond do
         rem(current, 3) == 0 and rem(current, 5) == 0 ->
           "fizzbuzz"
+        rem(current, 3) == 0 ->
+          "fizz"
+        rem(current, 5) == 0 ->
+          "buzz"
+        true ->
+          current
       end
+    _downto(current - 1, [next_answer | result])
   end
 end
