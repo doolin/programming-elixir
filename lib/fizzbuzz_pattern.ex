@@ -1,0 +1,2 @@
+defmodule FizzbuzzPattern do
+end

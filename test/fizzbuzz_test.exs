@@ -7,9 +7,4 @@ defmodule FizzbuzzTest do
     assert expected == actual
   end
 
-  describe "fizzbuzz with pattern matching" do
-    test "for 15" do
-      assert 1 == 0
-    end
-  end
 end
