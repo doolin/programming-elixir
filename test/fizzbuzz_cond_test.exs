@@ -3,7 +3,7 @@ defmodule FizzbuzzCondTest do
 
   test "up to 5" do
     actual = FizzbuzzCond.upto(5)
-    expected = [1, 2, "fizz", 4, "buzz"]
+    expected = [1, 2, "Fizz", 4, "Buzz"]
 
     assert expected == actual
   end
