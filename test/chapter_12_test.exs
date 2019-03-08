@@ -11,7 +11,7 @@ defmodule Chapter12Test do
     assert result == "OK"
   end
 
-  test "case statement" do
+  test "case statement pattern matching" do
     dave = %{ name: "Dave", state: "TX", likes: "programming" }
     actual =
       case dave do
@@ -21,6 +21,20 @@ defmodule Chapter12Test do
           "no match"
       end
     expected = "Dave lives in TX"
+
+    assert expected == actual
+  end
+
+  test "case statement used as a guard" do
+    dave = %{name: "Dave", age: 27}
+    actual =
+      case dave do
+        person = %{age: age} when is_number(age) and age >= 21 ->
+          "Enter, #{person.name}!"
+        _->
+          "no admission"
+      end
+    expected = "Enter, Dave!"
 
     assert expected == actual
   end
