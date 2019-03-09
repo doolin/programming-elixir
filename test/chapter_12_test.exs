@@ -38,4 +38,11 @@ defmodule Chapter12Test do
 
     assert expected == actual
   end
+
+  test "an exception" do
+    assert_raise FileNotFound, fn ->
+      File.read("foobar")
+      # process(file)
+    end
+  end
 end
