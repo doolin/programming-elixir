@@ -40,9 +40,11 @@ defmodule Chapter12Test do
   end
 
   test "an exception" do
-    assert_raise FileNotFound, fn ->
-      File.read("foobar")
-      # process(file)
+    assert_raise RuntimeError, fn ->
+      result = File.read("foobar")
+      case result do
+        {:error, _} -> raise RuntimeError
+      end
     end
   end
 end
