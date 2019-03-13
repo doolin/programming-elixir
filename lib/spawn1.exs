@@ -6,3 +6,11 @@ defmodule Spawn1 do
     end
   end
 end
+
+pid = spawn(Spawn1, :greet, [])
+send pid, {self(), "World!"}
+
+receive do
+  {:ok, message} ->
+    IO.puts message
+end
