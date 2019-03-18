@@ -14,3 +14,11 @@ receive do
   {:ok, message} ->
     IO.puts message
 end
+
+send pid, {self(), "Kermit!"}
+receive do
+  {:ok, message} ->
+    IO.puts message
+after 500 ->
+  IO.puts "Greeter has gone away"
+end
