@@ -6,6 +6,13 @@ defmodule Chain do
     end
   end
 
-  def create_processes do
+  def create_processes(n) do
+    code_to_run = fn (_, [send_to]) ->
+      spawn(Chain, :counter, [send_to])
+    end
+
+    last = Enum.reduce(1..n, self(), code_to_run)
+
+    send(last, 0) # start the count by send a zero to the last process
   end
 end
