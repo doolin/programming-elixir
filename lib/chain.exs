@@ -14,5 +14,10 @@ defmodule Chain do
     last = Enum.reduce(1..n, self(), code_to_run)
 
     send(last, 0) # start the count by send a zero to the last process
+
+    receive do
+      final_answer when is_integer(final_answer) ->
+        "Result is #{inspect(final_answer)}"
+    end
   end
 end
