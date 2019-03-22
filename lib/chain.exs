@@ -20,4 +20,9 @@ defmodule Chain do
         "Result is #{inspect(final_answer)}"
     end
   end
+
+  def run(n) do
+    :timer.tc(Chain, :create_processes, [n])
+    |> IO.inspect
+  end
 end
