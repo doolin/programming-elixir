@@ -7,6 +7,6 @@ defmodule Parallel do
     end)
     |> Enum.map(fn (pid) ->
       receive do { ^pid, result } -> result end
-    end
+    end)
   end
 end
