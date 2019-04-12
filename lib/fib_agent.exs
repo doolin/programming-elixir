@@ -12,10 +12,13 @@ defmodule FibAgent do
       nil ->
         { n_1, cache } = do_fib(cache, n-1)
         result = n_1 + cache[n-2]
-        { result, Map.puy(cache, n, result) }
+        { result, Map.put(cache, n, result) }
 
       cached_value ->
         { cached_value, cache }
     end
   end
 end
+
+{:ok, agent} = FibAgent.start_link()
+IO.puts FibAgent.fib(agent, 2000)
