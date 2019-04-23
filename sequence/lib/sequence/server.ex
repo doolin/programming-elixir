@@ -8,6 +8,10 @@ defmodule Sequence.Server do
     GenServer.start_link(__MODULE__, current_number, name: __MODULE__)
   end
 
+  def next_number do
+    GenServer.call __MODULE__, next_number
+  end
+
   #####
   # GenServer implementation
 
