@@ -13,4 +13,8 @@ defmodule Duper.Results do
   def add_hash_for(path, hash) do
     GenServer.cast(@me, { :add, path, hash })
   end
+
+  def find_duplicates() do
+    GenServer.call(@me, :find_duplicates)
+  end
 end
