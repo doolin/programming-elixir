@@ -17,4 +17,10 @@ defmodule Duper.Results do
   def find_duplicates() do
     GenServer.call(@me, :find_duplicates)
   end
+
+  # Server
+
+  def init(:no_args) do
+    { :ok, %{} }
+  end
 end
