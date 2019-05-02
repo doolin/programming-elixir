@@ -23,4 +23,16 @@ defmodule Duper.Results do
   def init(:no_args) do
     { :ok, %{} }
   end
+
+  def handle_cast({ :add, path, hash }, results) do
+    results =
+      Map.update(
+        results,
+        hash,
+        [ path ],
+        fn existing ->
+          [ path | existing ]
+        end)
+    { :no_reply, results }
+  end
 end
