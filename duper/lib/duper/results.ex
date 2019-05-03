@@ -35,4 +35,12 @@ defmodule Duper.Results do
         end)
     { :no_reply, results }
   end
+
+  def handle_call(:find_duplicates, _from, results) do
+    {
+      :reply,
+      hashes_with_more_than_one_path(results),
+      results
+    }
+  end
 end
