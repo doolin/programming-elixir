@@ -10,4 +10,8 @@ defmodule Duper.Gatherer do
   def done() do
     Generver.cast(@me, { :result, path, hash })
   end
+
+  def result(path, hash) do
+    GenServer.cast(@me, { :result, path, hash })
+  end
 end
