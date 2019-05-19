@@ -3,6 +3,8 @@ defmodule Duper.Gatherer do
 
   @me Gatherer
 
+  # api
+
   def start_link(worker_count) do
     GenServer.start_link(__MODULE__, worker_count, name: @me)
   end
@@ -13,5 +15,11 @@ defmodule Duper.Gatherer do
 
   def result(path, hash) do
     GenServer.cast(@me, { :result, path, hash })
+  end
+
+  # server
+
+  def init(worker_count) do
+    { :ok, worker_count }
   end
 end
