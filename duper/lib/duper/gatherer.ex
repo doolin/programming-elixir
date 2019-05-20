@@ -22,4 +22,9 @@ defmodule Duper.Gatherer do
   def init(worker_count) do
     { :ok, worker_count }
   end
+
+  def handle_cast(:done, _worker_count = 1) do
+    report_results()
+    System.halt()
+  end
 end
