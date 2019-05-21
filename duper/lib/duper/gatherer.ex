@@ -27,4 +27,8 @@ defmodule Duper.Gatherer do
     report_results()
     System.halt()
   end
+
+  def handle_cast(:done, worker_count) do
+    { :noreply, worker_count - 1 }
+  end
 end
