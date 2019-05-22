@@ -31,4 +31,9 @@ defmodule Duper.Gatherer do
   def handle_cast(:done, worker_count) do
     { :noreply, worker_count - 1 }
   end
+
+  def handle_cast({:result, path, hash}, worker_count) do
+    Duper.Results.add_hash_for(path, hash)
+    { :noreply, worker_count }
+  end
 end
