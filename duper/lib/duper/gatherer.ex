@@ -36,4 +36,10 @@ defmodule Duper.Gatherer do
     Duper.Results.add_hash_for(path, hash)
     { :noreply, worker_count }
   end
+
+  defp report_results() do
+    IO.puts "Results:\n"
+    Duper.Results.find_duplicates()
+    |> Enum.each(&IO.inspect/1)
+  end
 end
