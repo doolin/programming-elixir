@@ -9,4 +9,9 @@ defmodule Duper.Worker do
     Process.send_after(self(), :do_one_file, 0)
     { :ok, nil }
   end
+
+  def handle_info(:do_one_file, _) do
+    Duper.Pathfinder.next_path()
+    |> add_result()
+  end
 end
