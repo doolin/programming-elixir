@@ -14,4 +14,9 @@ defmodule Duper.Worker do
     Duper.Pathfinder.next_path()
     |> add_result()
   end
+
+  def add_result(nil) do
+    Duper.Gatherer.done()
+    {:stop, :normal, nil}
+  end
 end
