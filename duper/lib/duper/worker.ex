@@ -19,4 +19,10 @@ defmodule Duper.Worker do
     Duper.Gatherer.done()
     {:stop, :normal, nil}
   end
+
+  def add_result(path) do
+    Duper.Gatherer.result(path, hash_of_file_at(path))
+    send(self(), :do_one_file)
+    { :no_reply, nil }
+  end
 end
