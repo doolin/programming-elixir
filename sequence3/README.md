@@ -1,4 +1,4 @@
-# Sequence3
+# Sequence3 -- Chapter 18
 
 ## A careful reread
 
