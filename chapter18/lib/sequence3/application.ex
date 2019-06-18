@@ -8,7 +8,7 @@ defmodule Sequence3.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      {Sequence3.Worker, 123},
+      {Sequence3.Server, 123},
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
