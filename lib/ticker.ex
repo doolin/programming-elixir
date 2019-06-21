@@ -1,7 +1,7 @@
 defmodule Ticker do
-
-  @interval 2000 # 2 secs
-  @name     :ticker
+  # 2 secs
+  @interval 2000
+  @name :ticker
 
   def start do
     pid = spawn(__MODULE__, :generator, [[]])
@@ -9,22 +9,25 @@ defmodule Ticker do
   end
 
   def register(client_pid) do
-    send :global.whereis_name(@name), { :register, client_pid }
+    send(:global.whereis_name(@name), {:register, client_pid})
   end
 
   def generator(clients) do
     receive do
-      { :register, pid } ->
-        IO.puts "registering #{inspect pid}"
-        generator([pid|clients])
+      {:register, pid} ->
+        IO.puts("registering #{inspect(pid)}")
+        generator([pid | clients])
     after
       @interval ->
-        IO.puts "tick"
-        Enum.each clients, fn client ->
-          send client, { :tick }
-        end
+        IO.puts("tick")
+
+        Enum.each(clients, fn client ->
+          send(client, {:tick})
+        end)
+
         generator(clients)
-      end
     end
   end
-  # end
+end
+
+# end

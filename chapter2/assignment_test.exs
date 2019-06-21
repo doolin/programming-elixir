@@ -8,4 +8,3 @@ defmodule AssignmentTest do
     end
   end
 end
-
