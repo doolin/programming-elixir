@@ -4,7 +4,7 @@ defmodule Ticker do
   @name     :ticker
 
   def start do
-    pid = spawn(__MODULE__, :generator, [[]]])
+    pid = spawn(__MODULE__, :generator, [[]])
     :global.register_name(@name, pid)
   end
 
@@ -27,4 +27,4 @@ defmodule Ticker do
       end
     end
   end
-end
+  # end
