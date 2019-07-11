@@ -1,8 +1,13 @@
 # ProgrammingElixir
 
-**TODO: Add description**
+Source code and notes repository for the eponymous book.
+The code in the repository is typed in manually from the
+examples in the book.
 
 ## Installation
+
+Use [asf-vm](https://github.com/asdf-vm/asdf) to install and manage
+elixir of different versions.
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 by adding `programming_elixir` to your list of dependencies in `mix.exs`:
